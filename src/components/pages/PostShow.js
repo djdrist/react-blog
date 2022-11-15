@@ -3,6 +3,7 @@ import { useNavigate, useParams, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getPostById, deletePost } from '../../redux/postsRedux';
 import { useState } from 'react';
+import dateToStr from '../../utils/dateToStr';
 
 const PostShow = () => {
 	const navigate = useNavigate();
@@ -66,9 +67,9 @@ const PostShow = () => {
 						Author: <span>{post.author}</span>
 					</p>
 					<p className='fw-bold'>
-						Published: <span>{post.publishedDate}</span>
+						Published: <span>{dateToStr(post.publishedDate)}</span>
 					</p>
-					<p>{post.content}</p>
+					<p dangerouslySetInnerHTML={{ __html: post.content }} />
 				</Container>
 			</>
 		);

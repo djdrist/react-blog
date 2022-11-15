@@ -3,6 +3,10 @@ import shortid from 'shortid';
 import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const PostForm = ({ action, actionText, postData }) => {
 	const navigate = useNavigate();
@@ -50,12 +54,10 @@ const PostForm = ({ action, actionText, postData }) => {
 			<Form.Group
 				className='mb-3 w-50'
 				controlId='published'>
-				<Form.Label>Publilshed</Form.Label>
-				<Form.Control
-					type='text'
-					placeholder='Enter date'
-					value={publishedDate}
-					onChange={(e) => setNewPost({ ...newPost, publishedDate: e.target.value })}
+				<Form.Label>Published</Form.Label>
+				<DatePicker
+					selected={publishedDate}
+					onChange={(date) => setNewPost({ ...newPost, publishedDate: date })}
 				/>
 			</Form.Group>
 			<Form.Group
@@ -74,12 +76,10 @@ const PostForm = ({ action, actionText, postData }) => {
 				className='mb-3 w-100'
 				controlId='content'>
 				<Form.Label>Main content</Form.Label>
-				<Form.Control
-					as='textarea'
-					rows={15}
-					placeholder='Enter post content'
+				<ReactQuill
+					theme='snow'
 					value={content}
-					onChange={(e) => setNewPost({ ...newPost, content: e.target.value })}
+					onChange={(content) => setNewPost({ ...newPost, content: content })}
 				/>
 			</Form.Group>
 			<Button

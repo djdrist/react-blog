@@ -5,7 +5,7 @@ const initialState = {
 			title: 'Article title',
 			shortDescription: 'Short description of the article...',
 			content: 'Main content of the article',
-			publishedDate: '02-02-2022',
+			publishedDate: new Date('02-02-2022'),
 			author: 'John Doe',
 		},
 		{
@@ -13,7 +13,7 @@ const initialState = {
 			title: 'New article',
 			shortDescription: 'All the best news',
 			content: 'lorem lorem',
-			publishedDate: '02-05-2022',
+			publishedDate: new Date('02-05-2022'),
 			author: 'Martin X',
 		},
 		{
@@ -21,7 +21,7 @@ const initialState = {
 			title: 'Best thing',
 			shortDescription: 'Best news',
 			content: 'lorem lorem ipsum',
-			publishedDate: '02-05-2022',
+			publishedDate: new Date('02-05-2022'),
 			author: 'Janet K',
 		},
 	],

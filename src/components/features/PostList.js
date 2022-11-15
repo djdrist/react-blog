@@ -2,6 +2,7 @@ import { Card, Button, Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { getAllPosts } from '../../redux/postsRedux';
 import { useNavigate } from 'react-router-dom';
+import dateToStr from '../../utils/dateToStr';
 import styles from './PostList.module.scss';
 
 const PostList = () => {
@@ -27,7 +28,7 @@ const PostList = () => {
 									Author:<span>{post.author}</span>
 								</Card.Subtitle>
 								<Card.Subtitle className='my-1'>
-									Published:<span>{post.publishedDate}</span>
+									Published:<span>{dateToStr(post.publishedDate)}</span>
 								</Card.Subtitle>
 								<Card.Text>{post.shortDescription}</Card.Text>
 								<Button
