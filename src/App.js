@@ -8,6 +8,8 @@ import NotFound from './components/pages/NotFound';
 import { Container } from 'react-bootstrap';
 import Header from './components/views/Header';
 import Footer from './components/views/Footer';
+import Categories from './components/pages/Categories';
+import CategoryShow from './components/pages/CategoryShow';
 
 function App() {
 	return (
@@ -30,6 +32,14 @@ function App() {
 				<Route
 					path='/post/edit/:id'
 					element={<PostEdit />}
+				/>
+				<Route
+					path='/categories'
+					element={<Categories />}
+				/>
+				<Route
+					path='/category/:categoryName'
+					element={<CategoryShow />}
 				/>
 				<Route
 					path='/about'

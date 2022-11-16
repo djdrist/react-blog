@@ -7,6 +7,7 @@ const initialState = {
 			content: 'Main content of the article',
 			publishedDate: new Date('02-02-2022'),
 			author: 'John Doe',
+			category: 'News',
 		},
 		{
 			id: '2',
@@ -15,6 +16,7 @@ const initialState = {
 			content: 'lorem lorem',
 			publishedDate: new Date('02-05-2022'),
 			author: 'Martin X',
+			category: 'News',
 		},
 		{
 			id: '3',
@@ -23,6 +25,21 @@ const initialState = {
 			content: 'lorem lorem ipsum',
 			publishedDate: new Date('02-05-2022'),
 			author: 'Janet K',
+			category: 'Movies',
+		},
+	],
+	categories: [
+		{
+			id: '1',
+			name: 'Sport',
+		},
+		{
+			id: '2',
+			name: 'News',
+		},
+		{
+			id: '3',
+			name: 'Movies',
 		},
 	],
 };

@@ -66,8 +66,11 @@ const PostShow = () => {
 					<p className='my-0 fw-bold'>
 						Author: <span>{post.author}</span>
 					</p>
-					<p className='fw-bold'>
+					<p className='my-0 fw-bold'>
 						Published: <span>{dateToStr(post.publishedDate)}</span>
+					</p>
+					<p className='fw-bold'>
+						Category: <span>{post.category}</span>
 					</p>
 					<p dangerouslySetInnerHTML={{ __html: post.content }} />
 				</Container>

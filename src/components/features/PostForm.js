@@ -6,20 +6,26 @@ import { useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import ReactQuill from 'react-quill';
 import { useForm, Controller } from 'react-hook-form';
+import { getCategories } from '../../redux/categoriesRedux';
+import { useSelector } from 'react-redux';
 import 'react-quill/dist/quill.snow.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const PostForm = ({ action, actionText, postData }) => {
+	const categories = useSelector((state) => getCategories(state));
+
 	const navigate = useNavigate();
 	const [newPost, setNewPost] = useState({
 		content: postData?.content || '',
 		publishedDate: postData?.publishedDate || '',
+		category: postData?.category || '',
 	});
 
 	const [contentError, setContentError] = useState(false);
 	const [dateError, setDateError] = useState(false);
+	const [categoryError, setCategoryError] = useState(false);
 
-	const { title, shortDescription, content, publishedDate, author } = newPost;
+	const { title, content, publishedDate, author, category, shortDescription } = newPost;
 	const {
 		control,
 		handleSubmit,
@@ -40,10 +46,12 @@ const PostForm = ({ action, actionText, postData }) => {
 			shortDescription: data.shortDescription,
 			content: newPost.content,
 			publishedDate: newPost.publishedDate,
+			category: newPost.category,
 		};
 		setContentError(!content);
 		setDateError(!publishedDate);
-		if (content && publishedDate) {
+		setCategoryError(!categoryError);
+		if (content && publishedDate && category) {
 			action(payload);
 			navigate('/');
 		}
@@ -98,6 +106,25 @@ const PostForm = ({ action, actionText, postData }) => {
 					onChange={(date) => setNewPost({ ...newPost, publishedDate: date })}
 				/>
 				{dateError && <small className='d-block form-text text-danger mt-2'>Date can't be empty</small>}
+			</Form.Group>
+			<Form.Group
+				className='mb-3 w-100'
+				controlId='category'>
+				<Form.Label>Category</Form.Label>
+				<Form.Select
+					aria-label='Default select example'
+					value={newPost.category}
+					onChange={(e) => setNewPost({ ...newPost, category: e.target.value })}>
+					<option value=''>Select category</option>
+					{categories.map((category) => (
+						<option
+							key={category.id}
+							value={category.name}>
+							{category.name}
+						</option>
+					))}
+				</Form.Select>
+				{categoryError && <small className='d-block form-text text-danger mt-2'>Please choose category</small>}
 			</Form.Group>
 			<Form.Group
 				className='mb-3 w-100'
